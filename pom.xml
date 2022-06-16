@@ -6,9 +6,11 @@
     <packaging>pom</packaging>
     <modules>
         <module>api</module>
-        <module>eureka</module>
         <module>user</module>
         <module>company</module>
+        <module>eureka</module>
+        <module>eureka-fone</module>
+        <module>eureka-ftwo</module>
     </modules>
 
     <parent>

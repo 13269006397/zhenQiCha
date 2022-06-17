@@ -8,6 +8,8 @@
         <module>api</module>
         <module>user</module>
         <module>company</module>
+        <module>company-fone</module>
+        <module>company-ftwo</module>
         <module>eureka</module>
         <module>eureka-fone</module>
         <module>eureka-ftwo</module>

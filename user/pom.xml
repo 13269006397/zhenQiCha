@@ -32,17 +32,17 @@
             <scope>runtime</scope>
             <optional>true</optional>
         </dependency>
-        <!--Spring Boot 测试-->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-test</artifactId>
-            <scope>test</scope>
-        </dependency>
         <!--引入公共子模块-->
         <dependency>
             <groupId>com.xinqiu</groupId>
             <artifactId>api</artifactId>
             <version>1.0-SNAPSHOT</version>
+        </dependency>
+        <!--Spring Boot 测试-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
         </dependency>
         <!--junit 测试-->
         <dependency>

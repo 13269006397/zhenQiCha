@@ -1,5 +1,5 @@
 server:
-  port: 9001 #服务端口号
+  port: 9002 #服务端口号
 spring:
   application:
     name: companyServer  #微服务名称，对外暴漏的微服务名称，十分重要
@@ -34,7 +34,7 @@ eureka:
       #将服务注册到 Eureka Server 集群
 
   instance:
-    instance-id: COMPANY-9001 #自定义服务名称信息
+    instance-id: COMPANY-9002 #自定义服务名称信息
     prefer-ip-address: true  #显示访问路径的 ip 地址
 ########################################## spring cloud 使用 Spring Boot actuator 监控完善信息###################################
 # Spring Boot 2.50对 actuator 监控屏蔽了大多数的节点，只暴露了 heath 节点，本段配置（*）就是为了开启所有的节点
@@ -44,8 +44,8 @@ management:
       exposure:
         include: "*"   # * 在yaml 文件属于关键字，所以需要加引号
 info:
-  app.name: company
-  company.name: com.xinqiu.company
+  app.name: company-fone
+  company.name: com.xinqiu.companyfone
   build.aetifactId: @project.artifactId@
   build.version: @project.version@
 

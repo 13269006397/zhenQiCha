@@ -28,6 +28,10 @@ public class userController {
     @Autowired
     private RestTemplate restTemplate;
 
+    // 面向微服务编程，即通过微服务的名称来获取调用地址
+    // 使用注册到 Spring Cloud Eureka 服务注册中心中的服务，即 application.name
+    private static final String REST_URL_PROVIDER_PREFIX = "http://companyServer";
+
     @PostMapping("/getUser")
     public User getUser(@RequestBody User user) {
         return userService.get(user.getId());
@@ -44,7 +48,7 @@ public class userController {
      */
     @PostMapping("/findCompanyByUser")
     public String findCompanyByUser() {
-        return restTemplate.getForObject("http://companyServer/company/getCompanyList", String.class);
+        return restTemplate.getForObject(REST_URL_PROVIDER_PREFIX + "/company/getCompanyList", String.class);
     }
 
 }

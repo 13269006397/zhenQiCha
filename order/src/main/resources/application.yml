@@ -1,0 +1,21 @@
+server:
+  port: 8011 #服务端口号
+spring:
+  application:
+    name: orderServer  #微服务名称，对外暴漏的微服务名称，十分重要
+  ################################################## JDBC 通用配置  ##########################################
+  datasource:
+    username: yy123456        #数据库登陆用户名
+    password: Yy123456        #数据库登陆密码
+    url: jdbc:mysql://wanenggod.mysql.rds.aliyuncs.com:3306/wanenggod?useSSL=false&serverTimezone=Asia/Shanghai       #数据库url
+    driver-class-name: com.mysql.jdbc.Driver                  #数据库驱动
+
+eureka:
+  client:
+    register-with-eureka: true #服务消费者可以不向服务注册中心注册服务
+    fetch-registry: true  #服务消费者客户端需要去检索服务
+    service-url:
+      defaultZone: http://eureka7001.com:7001/eureka/,http://eureka7002.com:7002/eureka/,http://eureka7003.com:7003/eureka/
+  instance:
+    instance-id: ORDER-8011 #自定义服务名称信息
+    prefer-ip-address: true  #显示访问路径的 ip 地址

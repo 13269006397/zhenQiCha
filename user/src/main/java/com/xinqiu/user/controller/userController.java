@@ -8,7 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 
-import javax.annotation.Resource;
 import java.util.List;
 
 /**
@@ -30,7 +29,9 @@ public class userController {
 
     // 面向微服务编程，即通过微服务的名称来获取调用地址
     // 使用注册到 Spring Cloud Eureka 服务注册中心中的服务，即 application.name
-    private static final String REST_URL_PROVIDER_PREFIX = "http://companyServer";
+    private static final String COMPANY_REST_URL_PROVIDER_PREFIX = "http://companyServer";
+    private static final String ORDER_REST_URL_PROVIDER_PREFIX = "http://orderServer";
+
 
     @PostMapping("/getUser")
     public User getUser(@RequestBody User user) {
@@ -48,7 +49,21 @@ public class userController {
      */
     @PostMapping("/findCompanyByUser")
     public String findCompanyByUser() {
-        return restTemplate.getForObject(REST_URL_PROVIDER_PREFIX + "/company/getCompanyList", String.class);
+        return restTemplate.getForObject(COMPANY_REST_URL_PROVIDER_PREFIX + "/company/getCompanyList", String.class);
     }
+
+    /**
+     * user模块远程调用company模块
+     * @return String
+     */
+    @PostMapping("/getOrder")
+    public String getOrder() {
+        return restTemplate.getForObject(ORDER_REST_URL_PROVIDER_PREFIX + "/order/", String.class);
+    }
+
+
+
+
+
 
 }

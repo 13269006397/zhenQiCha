@@ -58,7 +58,7 @@ public class userController {
      */
     @PostMapping("/getOrder")
     public String getOrder() {
-        return restTemplate.getForObject(ORDER_REST_URL_PROVIDER_PREFIX + "/order/", String.class);
+        return restTemplate.getForObject(ORDER_REST_URL_PROVIDER_PREFIX + "/order/getOrder", String.class);
     }
 
 

@@ -9,11 +9,31 @@ spring:
     password: Yy123456        #数据库登陆密码
     url: jdbc:mysql://wanenggod.mysql.rds.aliyuncs.com:3306/wanenggod?useSSL=false&serverTimezone=Asia/Shanghai       #数据库url
     driver-class-name: com.mysql.jdbc.Driver                  #数据库驱动
-
-############################### 不检查 spring.config.import=configserver:##################
-#  cloud:
-#    config:
-#      enabled: false
+  server:
+    port: 8083
+    servlet:
+      context-path: /redis
+  # redis配置
+  redis:
+    # redis ip 号
+    host: 192.168.98.128
+    # redis 端口号
+    port: 6379
+    # redis 密码
+    #password: 123456
+    jedis:
+      pool:
+        max-active: 300
+        max-wait: 30000
+        max-idle: 10
+        min-idle: 10
+    timeout: 10000
+    #指定redis存储库
+    database: 2
+    #连接池内空闲连接至少保留毫秒数
+    minEvictableIdleTimeMillis: 300000
+    #连接空闲时, 间隔秒数自动检查连接可用性,redis断开可用来自恢复连接
+    timeBetweenEvictionRunsMillis: 60000
 ###################################### MyBatis 配置 ######################################
 mybatis:
   # 指定 mapper.xml 的位置
@@ -29,8 +49,8 @@ mybatis:
 eureka:
   client: #将客户端注册到 eureka 服务列表内
     service-url:
-      #defaultZone: http://localhost:7001/eureka  #这个地址是 7001注册中心在 application.yml 中暴露出来额注册地址 （单机版）
-      defaultZone: http://eureka7001.com:7001/eureka/,http://eureka7002.com:7002/eureka/,http://eureka7003.com:7003/eureka/
+        defaultZone: http://localhost:7001/eureka  #这个地址是 7001注册中心在 application.yml 中暴露出来额注册地址 （单机版）
+      # defaultZone: http://eureka7001.com:7001/eureka/,http://eureka7002.com:7002/eureka/,http://eureka7003.com:7003/eureka/
       #将服务注册到 Eureka Server 集群
 
   instance:

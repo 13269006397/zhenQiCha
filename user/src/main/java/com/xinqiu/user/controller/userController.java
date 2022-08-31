@@ -1,7 +1,10 @@
 package com.xinqiu.user.controller;
 
+import com.xinqiu.api.entity.Common;
 import com.xinqiu.api.entity.User;
 import com.xinqiu.user.service.userService;
+import com.xinqiu.user.utils.RedisUtil;
+import io.netty.util.internal.StringUtil;
 import org.springframework.beans.factory.annotation.Value;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,20 +30,29 @@ public class userController {
     @Autowired
     private RestTemplate restTemplate;
 
-    // 面向微服务编程，即通过微服务的名称来获取调用地址
-    // 使用注册到 Spring Cloud Eureka 服务注册中心中的服务，即 application.name
+    @Autowired
+    private RedisUtil redisUtil;
+
     private static final String COMPANY_REST_URL_PROVIDER_PREFIX = "http://companyServer";
     private static final String ORDER_REST_URL_PROVIDER_PREFIX = "http://orderServer";
 
 
     @PostMapping("/getUser")
-    public User getUser(@RequestBody User user) {
-        return userService.get(user.getId());
+    public String getUser(@RequestBody User user) {
+        String name = (String) redisUtil.get(Common.USER + user.getId());
+        if (StringUtil.isNullOrEmpty(name)){
+            User resultUser = userService.get(user.getId());
+            redisUtil.set(Common.USER + user.getId(), resultUser.getNickName());
+            name = resultUser.getNickName();
+        }
+        return name;
     }
 
     @PostMapping("/getUserList")
     public List<User> getUserList() {
-        return userService.getAllUser();
+        List<User> allUser = userService.getAllUser();
+        return allUser;
+
     }
 
     /**
@@ -60,6 +72,7 @@ public class userController {
     public String getOrder() {
         return restTemplate.getForObject(ORDER_REST_URL_PROVIDER_PREFIX + "/order/getOrder", String.class);
     }
+
 
 
 

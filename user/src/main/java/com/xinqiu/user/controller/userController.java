@@ -59,7 +59,7 @@ public class userController {
      * user模块远程调用company模块
      * @return String
      */
-    @PostMapping("/findCompanyByUser")
+    @GetMapping("/findCompanyByUser")
     public String findCompanyByUser() {
         return restTemplate.getForObject(COMPANY_REST_URL_PROVIDER_PREFIX + "/company/getCompanyList", String.class);
     }
@@ -73,7 +73,11 @@ public class userController {
         return restTemplate.getForObject(ORDER_REST_URL_PROVIDER_PREFIX + "/order/getOrder", String.class);
     }
 
+    @GetMapping("/getList")
+    public String getList() {
+        return "goodDay!";
 
+    }
 
 
 

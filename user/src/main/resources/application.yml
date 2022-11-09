@@ -34,6 +34,13 @@ spring:
     minEvictableIdleTimeMillis: 300000
     #连接空闲时, 间隔秒数自动检查连接可用性,redis断开可用来自恢复连接
     timeBetweenEvictionRunsMillis: 60000
+    rabbitmq:
+      host: 192.168.32.128
+      port: 15672
+      username: admin
+      password: admin
+      #虚拟host 可以不设置,使用server默认host
+      #virtual-host: JCcccHost
 ###################################### MyBatis 配置 ######################################
 mybatis:
   # 指定 mapper.xml 的位置

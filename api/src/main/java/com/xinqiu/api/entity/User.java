@@ -10,8 +10,10 @@ import java.io.Serializable;
 @Data // 提供类的get、set、equals、hashCode、canEqual、toString 方法
 @Accessors(chain = true)
 public class User implements Serializable {
+    private String userName;
+    private String password;
+    private String phone;
     private String id;
     private String nickName;
-    private String password;
 
 }

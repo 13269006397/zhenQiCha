@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -31,7 +32,13 @@ public class companyController {
 
     @GetMapping("/getCompanyList")
     public List<Company> getCompanyList() {
-        return companyService.getAllCompany();
+        log.info("-------- 被远程调用了 --------");
+        ArrayList<Company> companyList = new ArrayList<>();
+        Company company = new Company();
+        company.setCompanyId("1");
+        company.setCompanyName("宁德时代");
+        companyList.add(company);
+        return companyList;
     }
 
 }
